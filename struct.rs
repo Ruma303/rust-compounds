@@ -53,26 +53,31 @@
 
 
         //# Istanza Triangle
-        let tri = Triangle {
+        /* let tri = Triangle {
             width: 30,
             height: 50
         };
-        println!("L'area del triangolo è {} pixel quadrati", triangle_area(&tri));
+        println!("L'area del triangolo è {} pixel quadrati", triangle_area(&tri)); */
 
 
         //# Chiamate a metodi d'istanza
-        println!("L'area del triangolo è {} pixel quadrati", tri.area());
+        /* println!("L'area del triangolo è {} pixel quadrati", tri.area());
 
         let rotated_tri = tri.rotate();
         println!("Dopo la rotazione, il triangolo ha larghezza {} e altezza {}", rotated_tri.width, rotated_tri.height);
 
         tri.enlarge(2);
-        println!("Dopo l'ingrandimento, l'area del triangolo è {} pixel quadrati", tri.area());
-
+        println!("Dopo l'ingrandimento, l'area del triangolo è {} pixel quadrati", tri.area()); */
 
 
         //# Chiamata del metodo associato
-        // println!("L'area del triangolo è {} pixel quadrati", Triangle::area(&tri));
+        /* let default_tri = Triangle::new_default_triangle();
+        println!("Nuovo triangolo di default creato: {:#?}", default_tri); */
+
+
+        //# Invocazione costruttore
+        let tri2 = Triangle::new(10, 5);
+        println!("Nuovo triangolo di creato: {:#?}", tri2);
     }
 
     //, Tuple struct
@@ -80,6 +85,7 @@
 
 
     //, Passaggio istanze struct come parametri
+    #[derive(Debug)]
     struct Triangle {
         width: u32,
         height: u32
@@ -92,6 +98,7 @@
     //, Metodi delle struct
     impl Triangle {
         //# Metodi d'istanza
+
         // Borrow dei dati d'istanza
         fn area(&self) -> u32 {
             (self.width * self.height) / 2
@@ -107,5 +114,18 @@
         fn enlarge(&mut self, factor: u32) {
             self.width *= factor;
             self.height *= factor;
+        }
+
+        //# Metodi associati
+        fn new_default_triangle() -> Self {
+            Triangle {
+                width: 1,
+                height: 1,
+            }
+        }
+
+        //# Costruttori
+        fn new(width: u32, height: u32) -> Self {
+            Triangle { width, height }
         }
     }
