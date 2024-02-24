@@ -1,3 +1,4 @@
+
     enum Directions {
         Nord,
         Est,
@@ -52,6 +53,26 @@
         let msg2 = Message::ChangeColor(255, 0, 0); msg2.actions();
         let msg3 = Message::Move { x: 10, y: 20 }; msg3.actions();
         let msg4 = Message::Write("Hello, world!".to_string()); msg4.actions();
+
+
+        //, Option enum
+        let number = Some(10);
+        let boolean = Some(true);
+        let nothing: Option<i32> = None;
+
+        //# Sommare dati
+        let x: Option<i32> = Some(10);
+        let y: i32 = 14;
+        //let sum = x + y; //. Non sono lo stesso dato
+        //println!("{}", sum);
+
+
+        //* Metodi sicuri
+        let sum = x.unwrap() + y;
+        println!("{}", sum);
+
+        let sum = x.unwrap_or(0) + y;
+        println!("{}", sum);
     }
 
 
@@ -99,8 +120,7 @@
     }
 
 
-    //, dati associati
-
+    //, Dati associati
     enum Message {
         Send,
         ChangeColor(i32, i32, i32),
@@ -119,3 +139,9 @@
         }
     }
 
+
+    //% Option Enum
+    /* enum Option<T> {
+        None,
+        Some(T)
+    } */
