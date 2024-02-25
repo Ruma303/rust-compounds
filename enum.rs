@@ -73,6 +73,14 @@
 
         let sum = x.unwrap_or(0) + y;
         println!("{}", sum);
+
+
+        //, Result enum
+        let message = Message::Send;
+        match message.is_sent() {
+            Ok(_) => println!("Il controllo ha confermato: il messaggio è stato inviato."),
+            Err(e) => println!("Errore durante l'invio del messaggio: {}", e),
+        } // Il controllo ha confermato: il messaggio è stato inviato.
     }
 
 
@@ -137,11 +145,29 @@
                 Message::Write(text) => println!("Testo del messaggio: {}", text),
             }
         }
+
+        //, Metodi per Result
+        fn is_sent(&self) -> Result<(), String> {
+            match self {
+                Message::Send => {
+                    self.actions(); // Invoca l'azione associata a Message::Send
+                    Ok(())
+                },
+                _ => Err(String::from("Il messaggio non è stato inviato")),
+            }
+        }
     }
 
 
-    //% Option Enum
+    //% Option enum
     /* enum Option<T> {
         None,
         Some(T)
+    } */
+
+
+    //% Result enum
+    /* enum Result<T, E> {
+        Ok(T),
+        Err(E)
     } */
